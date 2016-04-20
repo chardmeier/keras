@@ -907,7 +907,8 @@ class Model(Container):
         sample_weights = [standardize_weights(ref, sw, cw, mode)
                           for (ref, sw, cw, mode)
                           in zip(y, sample_weights, class_weights, self.sample_weight_modes)]
-        check_array_lengths(x, y, sample_weights)
+        # Array length check disabled for NN6. -ch
+        # check_array_lengths(x, y, sample_weights)
         check_loss_and_target_compatibility(y, self.loss_functions, self.internal_output_shapes)
         if self.stateful and batch_size:
             if x[0].shape[0] % batch_size != 0:
